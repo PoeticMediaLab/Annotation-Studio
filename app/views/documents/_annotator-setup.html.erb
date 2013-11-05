@@ -41,50 +41,50 @@ jQuery(function ($) {
 	Backbone.history.start({pushState: true, root: window.location})
 
 
-    var studio = $('#textcontent').annotator().annotator('setupPlugins', {}, {
-        <% if current_user.has_role?(:admin) && ENV["ANNOTATOR_FILTER"] == 'true' %>
-        <% else %>
-        Filter: false,
-        <% end %>
-        Auth: {
-        	token: '<%= @jwt %>'
-        },
-        Store: {
-            prefix: '<%= ENV["API_URL"] %>',
-            annotationData: {
-                'uri': [location.protocol, '//', location.host, location.pathname].join(''),
-                "groups": groups,
-                "subgroups": subgroups,
-                // "username": 'Jamie F.',
-            },
-            loadFromSearch: {
-                'limit': 5,
-                "groups": groups,
-                "subgroups": subgroups,
-                'user': "<%= current_user.email %>",
-                'mode': 'user', // default mode -- user can switch via sidebar button.
-                'context': 'document',
-                'uri': [location.protocol, '//', location.host, location.pathname].join('')
-            }
-        },
-        Markdown: false, // use RichText instead
-        AnnotateItPermissions: false, // this is built into the kitchen sink, so cancel it
-        Permissions: {
-        	user: "<%= current_user.email %>",
-        	permissions: {
-                'read': ['<%= current_user.email %>'], // default: review mode; this is what users will need to control
-                'update': ['<%= current_user.email %>'], // no one else can ever update
-                'delete': ['<%= current_user.email %>'], // no one else can ever delete
-                'admin': ['<%= current_user.email %>'] // no one else can ever admin
-        	},
-        	userString: function (user) {
-        		return "<%= current_user.first_name_last_initial %>";
-            },
-	        // Permissions settings per-annotation
-	        showViewPermissionsCheckbox: true,
-	        showEditPermissionsCheckbox: false
-        }
-    });
+	var studio = $('#textcontent').annotator().annotator('setupPlugins', {}, {
+		<% if current_user.has_role?(:admin) && ENV["ANNOTATOR_FILTER"] == 'true' %>
+		<% else %>
+		Filter: false,
+		<% end %>
+		Auth: {
+			token: '<%= @jwt %>'
+		},
+		Store: {
+			prefix: '<%= ENV["API_URL"] %>',
+			annotationData: {
+				'uri': [location.protocol, '//', location.host, location.pathname].join(''),
+				"groups": groups,
+				"subgroups": subgroups,
+				// "username": 'Jamie F.',
+			},
+			loadFromSearch: {
+				'limit': 5,
+				"groups": groups,
+				"subgroups": subgroups,
+				'user': "<%= current_user.email %>",
+				'mode': 'user', // default mode -- user can switch via sidebar button.
+				'context': 'document',
+				'uri': [location.protocol, '//', location.host, location.pathname].join('')
+			}
+		},
+		Markdown: false, // use RichText instead
+		AnnotateItPermissions: false, // this is built into the kitchen sink, so cancel it
+		Permissions: {
+			user: "<%= current_user.email %>",
+			permissions: {
+				'read': ['<%= current_user.email %>'], // default: review mode; this is what users will need to control
+				'update': ['<%= current_user.email %>'], // no one else can ever update
+				'delete': ['<%= current_user.email %>'], // no one else can ever delete
+				'admin': ['<%= current_user.email %>'] // no one else can ever admin
+			},
+			userString: function (user) {
+				return "<%= current_user.first_name_last_initial %>";
+			},
+			// Permissions settings per-annotation
+			showViewPermissionsCheckbox: true,
+			showEditPermissionsCheckbox: false
+		}
+	});
 	var optionsRichText = {
 		editor_enabled: <%= ENV["ANNOTATOR_RICHTEXT"] %>,
 		tinymce: {
@@ -93,6 +93,18 @@ jQuery(function ($) {
 	}
 	studio.annotator('addPlugin', 'RichText', optionsRichText)
 
+	var optionsRichText = {
+		tinymce: {
+			selector: "li.annotator-item textarea",
+			plugins: "media image insertdatetime link code",
+			menubar: false,
+			statusbar: false,
+			toolbar_items_size: 'small',
+			extended_valid_elements : "iframe[src|frameborder|style|scrolling|class|width|height|name|align|id]",
+			toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code"
+		}
+	};
+	studio.annotator('addPlugin','RichText',optionsRichText)
 
 	var subscriber = $('#textcontent').annotator().data('annotator');
 
@@ -152,7 +164,7 @@ jQuery(function ($) {
 	var deleteFromSidebar =	function(annotation) {
 		$(".icon-comment").remove();
 		setTimeout(function() {
-		    sidebar.listAnnotations(subscriber.dumpAnnotations());
+			sidebar.listAnnotations(subscriber.dumpAnnotations());
 		}, 100);
 	};
 
