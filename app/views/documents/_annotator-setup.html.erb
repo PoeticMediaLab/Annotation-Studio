@@ -40,7 +40,6 @@ jQuery(function ($) {
 	var sidebar = new Sidebar.App();
 	Backbone.history.start({pushState: true, root: window.location})
 
-
 	var studio = $('#textcontent').annotator().annotator('setupPlugins', {}, {
 		<% if current_user.has_role?(:admin) && ENV["ANNOTATOR_FILTER"] == 'true' %>
 		<% else %>
@@ -86,25 +85,12 @@ jQuery(function ($) {
 		}
 	});
 	var optionsRichText = {
-		editor_enabled: <%= ENV["ANNOTATOR_RICHTEXT"] %>,
+		richtext_enabled: <%= ENV["ANNOTATOR_RICHTEXT"] %>,
 		tinymce: {
 			'toolbar': '<%= ENV["ANNOTATOR_RICHTEXT_CONFIG"] %>'
 		}
 	}
 	studio.annotator('addPlugin', 'RichText', optionsRichText)
-
-	var optionsRichText = {
-		tinymce: {
-			selector: "li.annotator-item textarea",
-			plugins: "media image insertdatetime link code",
-			menubar: false,
-			statusbar: false,
-			toolbar_items_size: 'small',
-			extended_valid_elements : "iframe[src|frameborder|style|scrolling|class|width|height|name|align|id]",
-			toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code"
-		}
-	};
-	studio.annotator('addPlugin','RichText',optionsRichText)
 
 	var subscriber = $('#textcontent').annotator().data('annotator');
 
