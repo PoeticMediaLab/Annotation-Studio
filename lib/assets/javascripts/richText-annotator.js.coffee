@@ -23,6 +23,7 @@ class Annotator.Plugin.RichText extends Annotator.Plugin
     
     # Viewer setup
     annotator.viewer.addField load: @updateViewer
+
     # Check if the editor should be set up
     return unless @options.editor_enabled
 
