@@ -16,14 +16,13 @@
 //= require twitter/bootstrap
 //= require jasny-fileinput
 //= require redactor-rails/redactor.min
-//= require redactor-config
 //= require showdown
 //= require gettext
 //= require xpath
 //= require json2.min
 //= require Math.uuid
 //= require moment.min
-//= require tinymce/tinymce.min
+//= require tinymce
 //= require annotator.min
 //= require richText-annotator
 //= require underscore
