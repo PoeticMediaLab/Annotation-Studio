@@ -2,19 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#document-text, #document-chapters {
-	textarea, .redactor_box {
-		height: 200px;
-		width: 800px;
-	}
-}
-
-.redactor_box, .redactor_text_area, .redactor_editor {
-	height: 200px;
-	width: 800px;
-}
-
-
 .help-block {
 	font-variant:italic;
 	margin-top:10px;

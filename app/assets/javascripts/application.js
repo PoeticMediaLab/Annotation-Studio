@@ -15,7 +15,6 @@
 //= require jquery.ui.all
 //= require twitter/bootstrap
 //= require jasny-fileinput
-//= require redactor-rails/redactor.min
 //= require showdown
 //= require gettext
 //= require xpath

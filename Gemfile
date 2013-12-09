@@ -54,8 +54,6 @@ gem "carrierwave"
 # gem "carrierwave_direct"
 # gem "sidekiq"
 
-
-gem 'redactor-rails' # '0.3.2'
 gem 'jbuilder'
 gem "jwt" #, "~> 0.1.4"
 gem "rabl"

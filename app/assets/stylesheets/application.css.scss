@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require "redactor-rails"
  *= require "bootstrap_and_overrides"
  *= require "bootstrap.min"
  *= require "annotator.min"
@@ -30,12 +29,6 @@ h1 {
 
 body {
 	background-color:#eee;
-}
-
-// Document edit form.
-.redactor_editor {
-	height: 200px;
-	width: 1000px;
 }
 
 p.help-block {
