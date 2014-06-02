@@ -32,3 +32,5 @@
 //= require mustache
 //= require annotator.touch.min
 //= require highlighter
+//= require categories
+//= require color_tags

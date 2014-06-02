@@ -88,7 +88,13 @@ jQuery(function ($) {
     }
   };
 
-  studio.annotator('addPlugin', 'RichText', optionsRichText);
+  // Enable Lacuna Stories' plugins: categories and color tags
+  var categories = ['Comment', 'Question', 'Analyze', 'Compare'];
+  studio.annotator('addPlugin', 'Categories', categories);
+  var colorTags = ['#fd7954', '#78cefd', '#1588ba', '#92a6c4', '#39404a', '#3a404a'];
+  studio.annotator('addPlugin', 'ColorTags', {colors: colorTags, limit: 5});
+
+  //studio.annotator('addPlugin', 'RichText', optionsRichText);
   studio.annotator("addPlugin", "Touch");
   var subscriber = $('#textcontent').annotator().data('annotator');
   $('.annotator-item').addClass('hide');
