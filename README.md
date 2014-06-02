@@ -14,8 +14,7 @@ Do these first, regardless if you are installing locally or on Heroku:
 - ```bundle install```
 - Copy `config/application.sample.yml` to `config/application.yml` _Do not check this into git_
 - Update `config/application.yml` with your configuration preferences: See file for in-line comments
-- Update the `API_CONSUMER` value in application.yml to point to the full URI of your running instance of MIT-Annotation-Data-Store
-
+- Update the `API_URL` value in application.yml to point to the full URI of your running instance of MIT-Annotation-Data-Store
 - Other required fields in application.yml are:
 `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `EMAIL_DOMAIN`
 
