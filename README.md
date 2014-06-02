@@ -17,7 +17,7 @@ Do these first, regardless if you are installing locally or on Heroku:
 - Update the `API_CONSUMER` value in application.yml to point to the full URI of your running instance of MIT-Annotation-Data-Store
 
 - Other required fields in application.yml are:
--- AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, EMAIL_DOMAIN
+`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `EMAIL_DOMAIN`
 
 
 ### Localhost installation
