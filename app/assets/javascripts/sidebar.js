@@ -23,7 +23,7 @@ Sidebar.Annotation = Backbone.Model.extend({
 // Collection
 Sidebar.RemoteAnnotationList = Backbone.Collection.extend({
 	model: Sidebar.Annotation,
-    url: 'http://annotations.mit.edu/api/search',
+    // url: 'http://annotations.mit.edu/api/search',
     // url: 'http://localhost:5000/api/search',
 	// comparator: function(annotation) {
 	// 	try {
@@ -191,6 +191,14 @@ Sidebar.App = Backbone.Router.extend({
 	},
 	// takes an array of existing annotation object literals.
 	listAnnotations: function (annotationArray) {
+		// Check for categorized annotations
+		try {
+			annotationArray = parseCategories(annotationArray);
+		}
+		catch(err) {
+			console.log("Error in parseCategories: " + err);
+		};
+
 		Sidebar.annotations = new Sidebar.LocalAnnotationList(annotationArray);
 		var annotationsList = new Sidebar.AnnotationListView({
 			"container": $('#annotation-well'),
@@ -212,3 +220,21 @@ Sidebar.App = Backbone.Router.extend({
 		});
 	},
 });
+
+// Parse categories added by the Lacuna Stories category plugin
+function parseCategories (arr) {
+	for (var i in arr) {
+		var obj = jQuery.parseJSON(arr[i].text);
+	    var str = '';
+	    for (var p in obj) {
+	        if (obj.hasOwnProperty(p)) {
+	            str += '<div class="categorized-annotation">';
+	            str += '<div id="' + p.toLowerCase() + '" class="category_label">' + p + '</div>';
+	            str += '<div class="annotation-text">' + obj[p] + '</div>';
+	            str += '</div>';
+	        }
+	    }
+	    arr[i].text = str;
+	}
+    return arr;
+}
